@@ -1,11 +1,11 @@
-namespace Morningstar.Content.Walls.Razewood;
+namespace Morningstar.Content.Walls.Inferno;
 
-public class RazewoodWall : ModWall
+public class TorchstoneWall : ModWall
 {
     /// <summary>
     ///     The map color of the wall.
     /// </summary>
-    public static readonly Color Color = new(71, 59, 41);
+    public static readonly Color Color = new(33, 27, 35);
     
     public override void SetStaticDefaults()
     {
