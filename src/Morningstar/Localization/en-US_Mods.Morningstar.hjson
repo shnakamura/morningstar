@@ -1,2 +1,51 @@
-# This file will automatically update with entries for new content after a build and reload.
+Tiles: {
+	IncineriteBarTile.MapEntry: Incinerite Bar Tile
+	IncineriteOreTile.MapEntry: Incinerite Ore Tile
+}
 
+Items: {
+	DragonScaleItem: {
+		DisplayName: Dragon Scale Item
+		Tooltip: ""
+	}
+
+	IncineriteBarItem: {
+		DisplayName: Incinerite Bar Item
+		Tooltip: ""
+	}
+
+	IncineriteOreItem: {
+		DisplayName: Incinerite Ore Item
+		Tooltip: ""
+	}
+
+	InfernoGrassWallItem: {
+		DisplayName: Inferno Grass Wall Item
+		Tooltip: ""
+	}
+
+	AncientRazewoodItem: {
+		DisplayName: Ancient Razewood Item
+		Tooltip: ""
+	}
+
+	AncientRazewoodWallItem: {
+		DisplayName: Ancient Razewood Wall Item
+		Tooltip: ""
+	}
+
+	RazewoodItem: {
+		DisplayName: Razewood Item
+		Tooltip: ""
+	}
+
+	RazewoodWallItem: {
+		DisplayName: Razewood Wall Item
+		Tooltip: ""
+	}
+
+	TorchstoneWallItem: {
+		DisplayName: Torchstone Wall Item
+		Tooltip: ""
+	}
+}
