@@ -1,7 +1,12 @@
 namespace Morningstar.Content.Tiles.Inferno.Incinerite;
 
 public class IncineriteOreTile : ModTile
-{
+{    
+    /// <summary>
+    ///     The map color of the tile.
+    /// </summary>
+    public static readonly Color Color = new(173, 77, 43);
+    
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -20,8 +25,7 @@ public class IncineriteOreTile : ModTile
         Main.tileMergeDirt[Type] = true;
         Main.tileBlockLight[Type] = true;
         
-        // TODO: Add map color.
-        AddMapEntry(new Color(), CreateMapEntryName());
+        AddMapEntry(Color, CreateMapEntryName());
         
         HitSound = SoundID.Tink;
         MineResist = 1f;

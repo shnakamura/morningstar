@@ -1,9 +1,15 @@
+using Terraria.Localization;
 using Terraria.ObjectData;
 
 namespace Morningstar.Content.Tiles.Inferno.Incinerite;
 
 public class IncineriteBarTile : ModTile
 {
+    /// <summary>
+    ///     The map color of the tile.
+    /// </summary>
+    public static readonly Color Color = new(237, 161, 38);
+    
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -21,8 +27,7 @@ public class IncineriteBarTile : ModTile
         
         TileObjectData.addTile(Type);
         
-        // TODO: Add map color.
-        AddMapEntry(new Color(), CreateMapEntryName());
+        AddMapEntry(Color, Language.GetText("MapObject.MetalBar"));
         
         HitSound = SoundID.Tink;
     }

@@ -2,6 +2,11 @@ namespace Morningstar.Content.Tiles.Inferno.Razewood;
 
 public class RazewoodTile : ModTile
 {
+    /// <summary>
+    ///     The map color of the tile.
+    /// </summary>
+    public static readonly Color Color = new(100, 87, 65);
+    
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -10,8 +15,7 @@ public class RazewoodTile : ModTile
         Main.tileMergeDirt[Type] = true;
         Main.tileBlockLight[Type] = true;
         
-        // TODO: Add map color.
-        AddMapEntry(new Color());
+        AddMapEntry(Color);
         
         HitSound = SoundID.Dig;
     }

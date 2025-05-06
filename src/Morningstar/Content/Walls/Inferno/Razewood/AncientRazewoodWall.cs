@@ -2,14 +2,18 @@ namespace Morningstar.Content.Walls.Inferno.Razewood;
 
 public class AncientRazewoodWall : ModWall
 {
+    /// <summary>
+    ///     The map color of the wall.
+    /// </summary>
+    public static readonly Color Color = new(117, 109, 92);
+    
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
 
         Main.wallHouse[Type] = true;
         
-        // TODO: Add map color
-        AddMapEntry(new Color());
+        AddMapEntry(Color);
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num)
