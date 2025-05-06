@@ -1,6 +1,6 @@
-using Morningstar.Content.Tiles.Inferno.Incinerite;
+using Morningstar.Content.Tiles.Incinerite;
 
-namespace Morningstar.Content.Items.Inferno.Incinerite;
+namespace Morningstar.Content.Items.Incinerite;
 
 public class IncineriteBarItem : ModItem
 {

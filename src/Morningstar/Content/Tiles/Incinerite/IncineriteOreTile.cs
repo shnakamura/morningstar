@@ -1,4 +1,4 @@
-namespace Morningstar.Content.Tiles.Inferno.Incinerite;
+namespace Morningstar.Content.Tiles.Incinerite;
 
 public class IncineriteOreTile : ModTile
 {    

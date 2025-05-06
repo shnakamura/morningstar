@@ -1,11 +1,11 @@
-namespace Morningstar.Content.Tiles.Inferno.Razewood;
+namespace Morningstar.Content.Tiles.Razewood;
 
-public class RazewoodTile : ModTile
+public class AncientRazewoodTile : ModTile
 {
     /// <summary>
     ///     The map color of the tile.
     /// </summary>
-    public static readonly Color Color = new(100, 87, 65);
+    public static readonly Color Color = new(86, 76, 58);
     
     public override void SetStaticDefaults()
     {

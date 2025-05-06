@@ -1,4 +1,4 @@
-namespace Morningstar.Content.Walls.Inferno.Razewood;
+namespace Morningstar.Content.Walls.Razewood;
 
 public class RazewoodWall : ModWall
 {

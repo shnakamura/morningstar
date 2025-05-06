@@ -1,7 +1,7 @@
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Morningstar.Content.Tiles.Inferno.Incinerite;
+namespace Morningstar.Content.Tiles.Incinerite;
 
 public class IncineriteBarTile : ModTile
 {

@@ -1,25 +1,25 @@
-using Morningstar.Content.Tiles.Inferno.Razewood;
+using Morningstar.Content.Tiles.Razewood;
 
-namespace Morningstar.Content.Items.Inferno.Razewood;
+namespace Morningstar.Content.Items.Razewood;
 
-public class AncientRazewoodItem : ModItem
+public class RazewoodItem : ModItem
 {
     public override void SetDefaults()
     {
         base.SetDefaults();
-        
-        Item.DefaultToPlaceableTile(ModContent.TileType<AncientRazewoodTile>());
+
+        Item.DefaultToPlaceableTile(ModContent.TileType<RazewoodTile>());
 
         Item.width = 18;
         Item.height = 24;
     }
-
+    
     public override void AddRecipes()
     {
         base.AddRecipes();
         
         CreateRecipe()
-            .AddIngredient<AncientRazewoodWallItem>(4)
+            .AddIngredient<RazewoodWallItem>(4)
             .AddTile(TileID.WorkBenches)
             .Register();
     }
