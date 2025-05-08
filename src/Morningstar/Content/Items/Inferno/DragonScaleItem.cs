@@ -6,6 +6,8 @@ public class DragonScaleItem : ModItem
     {
         base.SetDefaults();
 
+        Item.maxStack = Item.CommonMaxStack;
+
         Item.width = 18;
         Item.height = 22;
         
