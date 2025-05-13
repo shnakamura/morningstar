@@ -1,4 +1,4 @@
-namespace Morningstar.Content.Tiles.Incinerite;
+namespace Morningstar.Content.Tiles.Inferno;
 
 public class ScorchedBrickTile : ModTile
 {

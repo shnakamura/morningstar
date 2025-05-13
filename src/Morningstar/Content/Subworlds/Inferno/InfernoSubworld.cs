@@ -1,0 +1,25 @@
+using System.Collections.Generic;
+using SubworldLibrary;
+using Terraria.WorldBuilding;
+
+namespace Morningstar.Content.Subworlds.Inferno;
+
+public sealed class InfernoSubworld : Subworld
+{
+    public override List<GenPass> Tasks { get; } =
+    [
+        new TerrainPass("Terrain", 0f),
+        new VolcanoPass("Volcano", 1f)
+    ];
+    
+    public override int Width { get; } = 600;
+
+    public override int Height { get; } = 400;
+
+    public override void OnEnter()
+    {
+        base.OnEnter();
+
+        SubworldSystem.hideUnderworld = true;
+    }
+}

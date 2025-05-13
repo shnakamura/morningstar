@@ -7,3 +7,5 @@ hideResources = false
 
 includePDB = true
 includeSource = true
+
+modReferences = SubworldLibrary

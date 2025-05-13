@@ -15,6 +15,9 @@ public class TorchstoneTile : ModTile
         Main.tileMergeDirt[Type] = true;
         Main.tileBlockLight[Type] = true;
         
+        Main.tileMerge[Type][ModContent.TileType<TorchslagTile>()] = true;
+        Main.tileMerge[Type][ModContent.TileType<SingestoneTile>()] = true;
+        
         AddMapEntry(Color);
 
         HitSound = SoundID.Tink;

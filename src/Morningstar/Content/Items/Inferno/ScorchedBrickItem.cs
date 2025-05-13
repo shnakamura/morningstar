@@ -1,4 +1,4 @@
-using Morningstar.Content.Tiles.Incinerite;
+using Morningstar.Content.Tiles.Inferno;
 
 namespace Morningstar.Content.Items.Inferno;
 

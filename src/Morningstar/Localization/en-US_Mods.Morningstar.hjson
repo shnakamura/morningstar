@@ -1,51 +1,91 @@
 Tiles: {
-	IncineriteBarTile.MapEntry: Incinerite Bar Tile
-	IncineriteOreTile.MapEntry: Incinerite Ore Tile
+	IncineriteBarTile.MapEntry: Incinerite Bar
+	IncineriteOreTile.MapEntry: Incinerite Ore
 }
 
 Items: {
 	DragonScaleItem: {
-		DisplayName: Dragon Scale Item
+		DisplayName: Dragon Scale
 		Tooltip: ""
 	}
 
 	IncineriteBarItem: {
-		DisplayName: Incinerite Bar Item
+		DisplayName: Incinerite Bar
 		Tooltip: ""
 	}
 
 	IncineriteOreItem: {
-		DisplayName: Incinerite Ore Item
+		DisplayName: Incinerite Ore
 		Tooltip: ""
 	}
 
 	InfernoGrassWallItem: {
-		DisplayName: Inferno Grass Wall Item
+		DisplayName: Inferno Grass Wall
 		Tooltip: ""
 	}
 
 	AncientRazewoodItem: {
-		DisplayName: Ancient Razewood Item
+		DisplayName: Ancient Razewood
 		Tooltip: ""
 	}
 
 	AncientRazewoodWallItem: {
-		DisplayName: Ancient Razewood Wall Item
+		DisplayName: Ancient Razewood Wall
 		Tooltip: ""
 	}
 
 	RazewoodItem: {
-		DisplayName: Razewood Item
+		DisplayName: Razewood
 		Tooltip: ""
 	}
 
 	RazewoodWallItem: {
-		DisplayName: Razewood Wall Item
+		DisplayName: Razewood Wall
 		Tooltip: ""
 	}
 
 	TorchstoneWallItem: {
-		DisplayName: Torchstone Wall Item
+		DisplayName: Torchstone Wall
+		Tooltip: ""
+	}
+
+	IncineriteBrickItem: {
+		DisplayName: Incinerite Brick
+		Tooltip: ""
+	}
+
+	IncineriteBrickWallItem: {
+		DisplayName: Incinerite Brick Wall
+		Tooltip: ""
+	}
+
+	DracokarpItem: {
+		DisplayName: Dracokarp
+		Tooltip: ""
+	}
+
+	FishmotherItem: {
+		DisplayName: Fishmother
+		Tooltip: ""
+	}
+
+	ScorchedBrickItem: {
+		DisplayName: Scorched Brick
+		Tooltip: ""
+	}
+
+	SingestoneItem: {
+		DisplayName: Singestone
+		Tooltip: ""
+	}
+
+	TorchslagItem: {
+		DisplayName: Torchslag
+		Tooltip: ""
+	}
+
+	TorchstoneItem: {
+		DisplayName: Torchstone
 		Tooltip: ""
 	}
 }

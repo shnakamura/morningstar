@@ -5,7 +5,7 @@ public class SingestoneTile : ModTile
     /// <summary>
     ///     The map color of the tile.
     /// </summary>
-    public static readonly Color Color = new(61, 64, 75);
+    public static readonly Color Color = new(88, 77, 68);
     
     public override void SetStaticDefaults()
     {
@@ -14,6 +14,9 @@ public class SingestoneTile : ModTile
         Main.tileSolid[Type] = true;
         Main.tileMergeDirt[Type] = true;
         Main.tileBlockLight[Type] = true;
+
+        Main.tileMerge[Type][ModContent.TileType<TorchslagTile>()] = true;
+        Main.tileMerge[Type][ModContent.TileType<TorchstoneTile>()] = true;
         
         AddMapEntry(Color);
 
