@@ -89,3 +89,10 @@ Items: {
 		Tooltip: ""
 	}
 }
+
+Biomes: {
+	InfernoSurfaceBiome: {
+		DisplayName: Inferno Surface Biome
+		TownNPCDialogueName: the Inferno Surface Biome
+	}
+}

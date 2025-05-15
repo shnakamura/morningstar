@@ -32,36 +32,43 @@ public sealed class VolcanoPass(string name, float weight) : GenPass(name, weigh
         WorldUtils.Gen
         (
             origin,
-            new Shapes.Circle(64),
+            new Shapes.Circle(128),
             Actions.Chain(new Modifiers.Blotches(), new Modifiers.Dither(0.1), new Actions.SetTile((ushort)ModContent.TileType<TorchstoneTile>()))
         );
 
         WorldUtils.Gen
         (
             origin,
-            new Shapes.Circle(48),
+            new Shapes.Circle(96),
             Actions.Chain(new Modifiers.Blotches(), new Modifiers.Dither(0.25), new Actions.SetTile((ushort)ModContent.TileType<SingestoneTile>()))
         );
 
         WorldUtils.Gen
         (
             origin,
-            new Shapes.Circle(32),
+            new Shapes.Circle(72),
             Actions.Chain(new Modifiers.Blotches(), new Modifiers.Dither(), new Actions.SetTile((ushort)ModContent.TileType<TorchslagTile>()))
         );
 
         WorldUtils.Gen
         (
             origin,
-            new Shapes.Circle(20),
+            new Shapes.Circle(48),
             new Actions.ClearTile()
         );
 
         WorldUtils.Gen
         (
             origin,
-            new Shapes.Circle(24),
+            new Shapes.Circle(64),
             Actions.Chain(new Modifiers.Blotches(), new Modifiers.Dither(0.75), new Actions.ClearTile())
+        );
+        
+        WorldUtils.Gen
+        (
+            origin,
+            new Shapes.Circle(128),
+            Actions.Chain(new Modifiers.Blotches(), new Actions.PlaceWall((ushort)ModContent.WallType<TorchstoneWall>()))
         );
     }
 
@@ -70,26 +77,21 @@ public sealed class VolcanoPass(string name, float weight) : GenPass(name, weigh
         WorldUtils.Gen
         (
             origin,
-            new Shapes.Mound(16, 72),
+            new Shapes.Mound(32, 256),
             new Actions.ClearTile()
         );
 
         WorldUtils.Gen
         (
             origin,
-            new Shapes.Mound(24, 72),
+            new Shapes.Mound(48, 256),
             Actions.Chain(new Modifiers.Blotches(), new Modifiers.Dither(0.75), new Actions.ClearTile())
         );
     }
 
     private static void GenerateWalls(in Point origin)
     {
-        WorldUtils.Gen
-        (
-            origin,
-            new Shapes.Circle(48),
-            Actions.Chain(new Modifiers.Blotches(), new Actions.PlaceWall((ushort)ModContent.WallType<TorchstoneWall>()))
-        );
+
     }
 }
 

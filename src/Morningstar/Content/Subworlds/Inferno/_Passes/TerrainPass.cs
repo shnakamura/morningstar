@@ -11,29 +11,94 @@ public sealed class TerrainPass(string name, float weight) : GenPass(name, weigh
 {
     protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
     {
-        // TODO: Localize.
-        progress.Message = "Generating the terrain...";
+        GenerateTerrain(progress);
+        GenerateCraters(progress);
+        
+        GenerateDirt(progress);
+    }
 
-        GenerateTerrain();
-        GenerateCraters();
+    private static void GenerateDirt(GenerationProgress progress)
+    {
+        // TODO: Localize.
+        progress.Message = "Generating dirt blotches...";
+        
+        var count = 20;
+
+        for (var i = 0; i < count; i++)
+        {
+            if (i == 4 || i == 5)
+            {
+                continue;
+            }
+
+            var radius = WorldGen.genRand.Next(6, 13);
+
+            var spacing = Main.maxTilesX / (count + 1);
+
+            var x = spacing * (i + 1);
+            var y = 0;
+
+            for (var j = 0; j < Main.maxTilesY - 10; j++)
+            {
+                if (!WorldGen.SolidTile(x, j))
+                {
+                    continue;
+                }
+
+                y = j;
+
+                break;
+            }
+
+            var origin = new Point(x, y) + new Point(WorldGen.genRand.Next(-2, 3), WorldGen.genRand.Next(-2, 3));
+            
+            WorldUtils.Gen
+            (
+                origin,
+                new Shapes.Circle(radius),
+                Actions.Chain
+                (
+                    new Modifiers.OnlyTiles((ushort)ModContent.TileType<TorchstoneTile>(), (ushort)ModContent.TileType<TorchslagTile>(), (ushort)ModContent.TileType<SingestoneTile>()),
+                    new Modifiers.RadialDither(radius / 4f, radius),
+                    new Modifiers.Blotches(),
+                    new Actions.SetTile(TileID.Dirt)
+                )
+            );
+            
+            WorldUtils.Gen
+            (
+                origin,
+                new Shapes.Circle(radius),
+                Actions.Chain
+                (
+                    new Modifiers.OnlyTiles(TileID.Dirt),
+                    new Modifiers.IsTouchingAir(true),
+                    new Modifiers.Blotches(),
+                    new Actions.SetTile((ushort)ModContent.TileType<InfernoGrassTile>())
+                )
+            );
+        }
     }
     
-    private static void GenerateTerrain() 
+    private static void GenerateTerrain(GenerationProgress progress)
     {
+        // TODO: Localize.
+        progress.Message = "Scorching the Inferno...";
+        
         var baseNoise = new FastNoiseLite();
         
         baseNoise.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
         baseNoise.SetSeed(WorldGen.genRand.Next());
-        baseNoise.SetFrequency(0.015f);
+        baseNoise.SetFrequency(0.01f);
 
         var detailNoise = new FastNoiseLite();
         
         detailNoise.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
         detailNoise.SetSeed(WorldGen.genRand.Next());
-        detailNoise.SetFrequency(0.05f);
+        detailNoise.SetFrequency(0.1f);
 
-        var surfaceMin = (int)(Main.maxTilesY * 0.25f);
-        var surfaceMax = (int)(Main.maxTilesX * 0.3f);
+        var surfaceMin = (int)(Main.maxTilesY * 0.2f);
+        var surfaceMax = (int)(Main.maxTilesX * 0.25f);
 
         for (var x = 0; x < Main.maxTilesX; x++)
         {
@@ -46,11 +111,16 @@ public sealed class TerrainPass(string name, float weight) : GenPass(name, weigh
             {
                 WorldGen.PlaceTile(x, y, ModContent.TileType<TorchstoneTile>(), true, true);
             }
+            
+            progress.Set(x / (float)Main.maxTilesX);
         }
     }
 
-    private static void GenerateCraters()
+    private static void GenerateCraters(GenerationProgress progress)
     {
+        // TODO: Localize.
+        progress.Message = "Creating craters...";
+        
         var count = 10;
 
         for (var i = 0; i < count; i++)
@@ -83,7 +153,7 @@ public sealed class TerrainPass(string name, float weight) : GenPass(name, weigh
            
             var midRadius = radius + radius / 2;
             var outerRadius = radius + radius;
-
+            
             WorldUtils.Gen
             (
                 origin,
@@ -96,7 +166,7 @@ public sealed class TerrainPass(string name, float weight) : GenPass(name, weigh
                     new Actions.ClearWall(true)
                 )
             );
-
+            
             WorldUtils.Gen
             (
                 origin,
@@ -106,7 +176,7 @@ public sealed class TerrainPass(string name, float weight) : GenPass(name, weigh
                     new Modifiers.Dither(0.25f),
                     new Modifiers.Blotches(3),
                     new Modifiers.OnlyTiles((ushort)ModContent.TileType<TorchstoneTile>()),
-                    new Actions.SetTile(TileID.Dirt)
+                    new Actions.SetTile((ushort)ModContent.TileType<TorchslagTile>())
                 )
             );
 
@@ -119,8 +189,7 @@ public sealed class TerrainPass(string name, float weight) : GenPass(name, weigh
                     new Modifiers.Dither(0.25f),
                     new Modifiers.Blotches(),
                     new Modifiers.OnlyTiles((ushort)ModContent.TileType<TorchstoneTile>()),
-                    new Actions.SetTile(TileID.Dirt),
-                    new Actions.PlaceWall((ushort)ModContent.WallType<TorchstoneWall>())
+                    new Actions.SetTile((ushort)ModContent.TileType<SingestoneTile>())
                 )
             );
 
@@ -137,7 +206,7 @@ public sealed class TerrainPass(string name, float weight) : GenPass(name, weigh
                     (
                         new Modifiers.Dither(0.1),
                         new Modifiers.Blotches(1),
-                        new Actions.PlaceWall((ushort)ModContent.WallType<InfernoGrassWall>())
+                        new Actions.PlaceWall((ushort)ModContent.WallType<TorchstoneWall>())
                     )
                 );
             }
@@ -157,35 +226,38 @@ public sealed class TerrainPass(string name, float weight) : GenPass(name, weigh
                     new Actions.ClearTile().Output(tunnelData),
                     new Modifiers.Expand(1),
                     new Modifiers.OnlyTiles((ushort)ModContent.TileType<TorchstoneTile>()),
-                    new Actions.SetTile(TileID.Dirt).Output(tunnelData),
+                    new Actions.SetTile((ushort)ModContent.TileType<SingestoneTile>()).Output(tunnelData),
                     new Actions.PlaceWall((ushort)ModContent.WallType<TorchstoneWall>())
                 )
             );
-
+                        
             WorldUtils.Gen
             (
-                origin + new Point(tunnelOffset, 0),
-                new ModShapes.All(tunnelData),
+                origin,
+                new Shapes.Circle(radius),
                 Actions.Chain
                 (
-                    new Modifiers.Dither(0.75),
-                    new Modifiers.OnlyTiles(TileID.Dirt),
-                    new Modifiers.IsTouchingAir(),
-                    new Actions.SetTileKeepWall((ushort)ModContent.TileType<InfernoGrassTile>())
+                    new Modifiers.OnlyTiles((ushort)ModContent.TileType<TorchstoneTile>(), (ushort)ModContent.TileType<TorchslagTile>(), (ushort)ModContent.TileType<SingestoneTile>()),
+                    new Modifiers.RadialDither(radius / 4f, radius),
+                    new Modifiers.Blotches(),
+                    new Actions.SetTile(TileID.Dirt)
                 )
             );
             
             WorldUtils.Gen
             (
                 origin,
-                new Shapes.Circle(radius + radius / 2),
+                new Shapes.Circle(radius),
                 Actions.Chain
                 (
                     new Modifiers.OnlyTiles(TileID.Dirt),
-                    new Modifiers.IsTouchingAir(),
-                    new Actions.SetTileKeepWall((ushort)ModContent.TileType<InfernoGrassTile>())
+                    new Modifiers.IsTouchingAir(true),
+                    new Modifiers.Blotches(),
+                    new Actions.SetTile((ushort)ModContent.TileType<InfernoGrassTile>())
                 )
             );
+            
+            progress.Set(i / (float)count);
         }
     }
 }

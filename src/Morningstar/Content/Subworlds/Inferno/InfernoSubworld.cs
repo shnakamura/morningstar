@@ -8,13 +8,12 @@ public sealed class InfernoSubworld : Subworld
 {
     public override List<GenPass> Tasks { get; } =
     [
-        new TerrainPass("Terrain", 0f),
-        new VolcanoPass("Volcano", 1f)
+        new TerrainPass("Terrain", 0f)
     ];
     
-    public override int Width { get; } = 600;
+    public override int Width { get; } = 800;
 
-    public override int Height { get; } = 400;
+    public override int Height { get; } = 600;
 
     public override void OnEnter()
     {
