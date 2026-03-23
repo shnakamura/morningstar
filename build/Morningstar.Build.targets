@@ -1,0 +1,7 @@
+﻿<Project>
+    <Import Project="..\..\tModLoader.targets" />
+    
+    <Import Project="Morningstar.Shaders.targets" />
+    <Import Project="Morningstar.Usings.targets" />
+    <Import Project="Morningstar.Publicizer.targets" />
+</Project>

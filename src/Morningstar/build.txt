@@ -1,0 +1,12 @@
+displayName = Morningstar
+author = Morningstar Team
+version = 0.1
+
+includeSource = true
+
+hideCode = false
+hideResources = false
+
+playableOnPreview = false
+
+buildIgnore = *.csproj, *.sln, *.userprefs, *.user, *.bat, obj/*, bin/* idea/*, vs/*

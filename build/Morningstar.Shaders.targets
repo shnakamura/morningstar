@@ -1,0 +1,5 @@
+﻿<Project>
+    <Target Name="Shaders" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true'">
+        <Exec Command="&quot;$(SolutionDir)scripts\build-shaders.bat&quot;" />
+    </Target>
+</Project>

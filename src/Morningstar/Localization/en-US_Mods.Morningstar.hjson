@@ -1,0 +1,6 @@
+Biomes: {
+	MireBiome: {
+		DisplayName: Mire Biome
+		TownNPCDialogueName: the Mire Biome
+	}
+}
