@@ -10,14 +10,14 @@ public static class SpriteExtensions
     /// </summary>
     /// <param name="spriteBatch">The <see cref="SpriteBatch" /> used for drawing.</param>
     /// <param name="sprite">The <see cref="Sprite" /> to draw.</param>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown if <paramref name="spriteBatch" /> is <see langword="null" />.
+    /// </exception>
     /// <remarks>
     ///     If <see cref="Sprite.Destination" /> is not <see langword="null" />, the <see cref="Sprite" />
     ///     is drawn using the destination rectangle; otherwise, it is drawn using
     ///     <see cref="Sprite.Position" /> and <see cref="Sprite.Scale" />.
     /// </remarks>
-    /// <exception cref="ArgumentNullException">
-    ///     <paramref name="spriteBatch" /> is <see langword="null" />.
-    /// </exception>
     public static void Draw(this SpriteBatch spriteBatch, in Sprite sprite)
     {
         ArgumentNullException.ThrowIfNull(spriteBatch, nameof(spriteBatch));

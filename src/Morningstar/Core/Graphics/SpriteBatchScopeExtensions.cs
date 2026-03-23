@@ -17,7 +17,7 @@ public static class SpriteBatchScopeExtensions
     ///     restores the previous state when disposed.
     /// </returns>
     /// <exception cref="ArgumentNullException">
-    ///     <paramref name="spriteBatch" /> is <see langword="null" />.
+    ///     Thrown if <paramref name="spriteBatch" /> is <see langword="null" />.
     /// </exception>
     public static SpriteBatchScope Scope(this SpriteBatch spriteBatch, in SpriteBatchParameters parameters)
     {

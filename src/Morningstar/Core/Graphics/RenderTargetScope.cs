@@ -22,7 +22,7 @@ public readonly struct RenderTargetScope : IDisposable
         bindings = device.GetRenderTargets();
 
         device.SetRenderTarget(target);
-
+        
         if (!color.HasValue)
         {
             return;

@@ -5,17 +5,6 @@ namespace Morningstar.Core.Graphics;
 
 public sealed class RenderLayer
 {
-    public static readonly SpriteBatchParameters DefaultParameters = new
-    (
-        SpriteSortMode.Deferred, 
-        BlendState.NonPremultiplied, 
-        SamplerState.PointClamp, 
-        DepthStencilState.Default,
-        RasterizerState.CullNone, 
-        default,
-        Main.Transform
-    );
-
     private readonly List<SpriteRenderData> sprites = new();
 
     private readonly List<MeshRenderData> meshes = new();
@@ -50,7 +39,7 @@ public sealed class RenderLayer
     {
         Buffered = false;
 
-        Parameters = parameters ?? DefaultParameters;
+        Parameters = parameters ?? SpriteBatchParameters.Default;
     }
 
     public RenderLayer(int width, int height, in SpriteBatchParameters? parameters = null)
@@ -59,11 +48,11 @@ public sealed class RenderLayer
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(height, nameof(height));
 
         // TODO: Render Target initialization should probably not be handled here. Consider implementing pooling.
-        Main.QueueMainThreadAction(() => Target = new RenderTarget2D(GraphicsDevice, width, height));
+        Main.RunOnMainThread(() => Target = new RenderTarget2D(GraphicsDevice, width, height));
 
         Buffered = true;
 
-        Parameters = parameters ?? DefaultParameters;
+        Parameters = parameters ?? SpriteBatchParameters.Default;
     }
 
     /// <summary>

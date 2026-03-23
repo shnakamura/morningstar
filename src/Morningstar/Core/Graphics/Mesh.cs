@@ -13,10 +13,25 @@ public readonly struct Mesh
     /// <summary>
     ///     The vertices of the mesh.
     /// </summary>
-    public readonly VertexPositionColorTexture[] Vertices;
+    public readonly VertexPositionColorTexture[] Vertices { get; }
 
     /// <summary>
     ///     The indices of the mesh.
     /// </summary>
-    public readonly int[] Indices;
+    public readonly uint[] Indices { get; }
+
+    /// <summary>
+    ///     The primitive type of the mesh.
+    /// </summary>
+    public readonly PrimitiveType Type { get; }
+
+    public Mesh(VertexPositionColorTexture[] vertices, uint[] indices, PrimitiveType type)
+    {
+        ArgumentNullException.ThrowIfNull(vertices, nameof(vertices));
+        ArgumentNullException.ThrowIfNull(indices, nameof(indices));
+        
+        Vertices = vertices;
+        Indices = indices;
+        Type = type;
+    }
 }

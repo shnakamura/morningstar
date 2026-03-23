@@ -11,6 +11,20 @@
 public readonly struct SpriteBatchParameters
 {
     /// <summary>
+    ///     Gets the default <see cref="SpriteBatchParameters" /> configuration.
+    /// </summary>
+    public static SpriteBatchParameters Default { get; } = new
+    (
+        SpriteSortMode.Deferred,
+        BlendState.NonPremultiplied,
+        SamplerState.PointClamp,
+        DepthStencilState.Default,
+        RasterizerState.CullNone,
+        default,
+        Main.Transform
+    );
+    
+    /// <summary>
     ///     Gets the <see cref="SpriteSortMode"/> of the parameters.
     /// </summary>
     public SpriteSortMode SpriteSortMode { get; }
