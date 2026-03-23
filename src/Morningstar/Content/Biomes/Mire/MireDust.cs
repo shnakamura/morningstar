@@ -1,4 +1,4 @@
-﻿using Morningstar.Utilities;
+﻿using Morningstar.Core.Graphics;
 using ReLogic.Content;
 
 namespace Morningstar.Content.Biomes.Mire;

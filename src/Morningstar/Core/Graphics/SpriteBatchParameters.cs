@@ -11,37 +11,37 @@
 public readonly struct SpriteBatchParameters
 {
     /// <summary>
-    ///     Gets the <see cref="SpriteSortMode"/>.
+    ///     Gets the <see cref="SpriteSortMode"/> of the parameters.
     /// </summary>
     public SpriteSortMode SpriteSortMode { get; }
 
     /// <summary>
-    ///     Gets the <see cref="BlendState"/>.
+    ///     Gets the <see cref="BlendState"/> of the parameters.
     /// </summary>
     public BlendState BlendState { get; }
 
     /// <summary>
-    ///     Gets the <see cref="SamplerState"/>.
+    ///     Gets the <see cref="SamplerState"/> of the parameters.
     /// </summary>
     public SamplerState SamplerState { get; }
 
     /// <summary>
-    ///     Gets the <see cref="DepthStencilState"/>.
+    ///     Gets the <see cref="DepthStencilState"/> of the parameters.
     /// </summary>
     public DepthStencilState DepthStencilState { get; }
 
     /// <summary>
-    ///     Gets the <see cref="RasterizerState"/>.
+    ///     Gets the <see cref="RasterizerState"/> of the parameters.
     /// </summary>
     public RasterizerState RasterizerState { get; }
 
     /// <summary>
-    ///     Gets the <see cref="Effect"/>.
+    ///     Gets the <see cref="Effect"/> of the parameters.
     /// </summary>
     public Effect Effect { get; }
 
     /// <summary>
-    ///     Gets the <see cref="Matrix"/> used as the transform.
+    ///     Gets the <see cref="Matrix"/> used as the transform of the parameters.
     /// </summary>
     public Matrix TransformMatrix { get; }
 

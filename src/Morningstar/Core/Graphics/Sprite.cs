@@ -66,4 +66,12 @@ public readonly struct Sprite
     ///     Defaults to <see cref="SpriteEffects.None" />.
     /// </value>
     public readonly SpriteEffects Effects;
+
+    public Sprite(Asset<Texture2D> texture, Vector2 position, Color? color = null)
+    {
+        Texture = texture;
+        Position = position;
+        Color = color ?? Color.White;
+        Scale = Vector2.One;
+    }
 }

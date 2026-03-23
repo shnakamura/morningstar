@@ -1,6 +1,5 @@
 ﻿using Morningstar.Core.Graphics;
 using Morningstar.Core.Skies;
-using Morningstar.Utilities;
 using ReLogic.Content;
 using Terraria.GameContent;
 

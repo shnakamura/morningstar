@@ -1,4 +1,4 @@
-﻿namespace Morningstar.Utilities;
+﻿namespace Morningstar.Core.Graphics;
 
 public static class Screen
 {

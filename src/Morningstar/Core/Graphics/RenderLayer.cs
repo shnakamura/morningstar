@@ -5,13 +5,23 @@ namespace Morningstar.Core.Graphics;
 
 public sealed class RenderLayer
 {
+    public static readonly SpriteBatchParameters DefaultParameters = new
+    (
+        SpriteSortMode.Deferred, 
+        BlendState.NonPremultiplied, 
+        SamplerState.PointClamp, 
+        DepthStencilState.Default,
+        RasterizerState.CullNone, 
+        default,
+        Main.Transform
+    );
+
     private readonly List<SpriteRenderData> sprites = new();
 
     private readonly List<MeshRenderData> meshes = new();
-    
-    // TODO: Maybe allow for different batches/devices?
+
     private SpriteBatch SpriteBatch => Main.spriteBatch;
-    
+
     private GraphicsDevice GraphicsDevice => Main.graphics.GraphicsDevice;
 
     /// <summary>
@@ -40,8 +50,7 @@ public sealed class RenderLayer
     {
         Buffered = false;
 
-        // TODO: Replace with default parameters.
-        Parameters = parameters ?? new SpriteBatchParameters();
+        Parameters = parameters ?? DefaultParameters;
     }
 
     public RenderLayer(int width, int height, in SpriteBatchParameters? parameters = null)
@@ -54,55 +63,72 @@ public sealed class RenderLayer
 
         Buffered = true;
 
-        // TODO: Replace with default parameters.
-        Parameters = parameters ?? new SpriteBatchParameters();
+        Parameters = parameters ?? DefaultParameters;
     }
-    
+
     /// <summary>
-    ///     Queues the specified <see cref="SpriteRenderData"/> for rendering in this layer.
+    ///     Queues the specified <see cref="SpriteRenderData" /> for rendering in the layer.
     /// </summary>
-    /// <param name="data">The <see cref="SpriteRenderData"/> to add to the layer.</param>
+    /// <param name="data">The <see cref="SpriteRenderData" /> to add to the layer.</param>
     public void Draw(in SpriteRenderData data)
     {
         sprites.Add(data);
     }
 
     /// <summary>
-    ///     Queues the specified <see cref="MeshRenderData"/> for rendering in this layer.
+    ///     Queues the specified <see cref="MeshRenderData" /> for rendering in the layer.
     /// </summary>
-    /// <param name="data">The <see cref="MeshRenderData"/> to add to the layer.</param>
+    /// <param name="data">The <see cref="MeshRenderData" /> to add to the layer.</param>
     public void Draw(in MeshRenderData data)
     {
         meshes.Add(data);
     }
-    
+
+    /// <summary>
+    ///     Clears all queued rendering data from the layer.
+    /// </summary>
     public void Clear()
     {
         sprites.Clear();
         meshes.Clear();
     }
 
+    public void Fill()
+    {
+        if (!Buffered)
+        {
+            return;
+        }
+
+        using var scope = Target.Scope(Color.Transparent);
+
+        Flush_Sprites();
+        Flush_Meshes();
+    }
+
     public void Flush()
     {
-        using var scope = SpriteBatch.Scope(Parameters);
-        
+        var scope = SpriteBatch.Scope(Parameters);
+
         if (Buffered)
         {
-            DrawBuffer();
+            Flush_Buffer();
         }
         else
         {
-            DrawSprites();
-            DrawMeshes();
+            Flush_Sprites();
+            Flush_Meshes();
         }
+
+        Clear();
     }
 
-    private void DrawBuffer()
+    private void Flush_Buffer()
     {
-        
+        SpriteBatch.Draw(Target, Screen.Bounds, Color.White);
     }
-    
-    private void DrawSprites()
+
+    private void Flush_Sprites()
     {
         if (sprites.Count == 0)
         {
@@ -112,17 +138,20 @@ public sealed class RenderLayer
         for (var i = 0; i < sprites.Count; i++)
         {
             var data = sprites[i];
+
+            // TODO: Grouping by parameters to minimize batching.
+            SpriteBatch.Draw(in data.Sprite);
         }
     }
-    
+
     // TODO: Mesh rendering through buffers.
-    private void DrawMeshes()
+    private void Flush_Meshes()
     {
         if (meshes.Count == 0)
         {
             return;
         }
-        
+
         for (var i = 0; i < meshes.Count; i++)
         {
             var data = meshes[i];

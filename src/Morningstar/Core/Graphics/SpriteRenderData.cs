@@ -1,14 +1,8 @@
 ﻿namespace Morningstar.Core.Graphics;
 
-public readonly struct SpriteRenderData
+public readonly struct SpriteRenderData(in Sprite sprite, in SpriteBatchParameters parameters)
 {
-    public readonly Sprite Sprite;
+    public readonly Sprite Sprite = sprite;
 
-    public readonly SpriteBatchParameters Parameters;
-
-    public SpriteRenderData(in Sprite sprite, in SpriteBatchParameters parameters)
-    {
-        Sprite = sprite;
-        Parameters = parameters;
-    }
+    public readonly SpriteBatchParameters Parameters = parameters;
 }

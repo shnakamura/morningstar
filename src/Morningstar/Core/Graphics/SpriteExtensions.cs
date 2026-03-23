@@ -1,15 +1,15 @@
 ﻿namespace Morningstar.Core.Graphics;
 
 /// <summary>
-///     Provides <see cref="Sprite" /> extension methods.
+///     Provides <see cref="SpriteBatch" /> extension methods for working with <see cref="Sprite" />.
 /// </summary>
 public static class SpriteExtensions
 {
     /// <summary>
-    ///     Draws the specified <see cref="Sprite" /> using the provided <see cref="SpriteBatch" />.
+    ///     Draws a <see cref="Sprite" /> using the specified <see cref="SpriteBatch" />.
     /// </summary>
-    /// <param name="sprite">The <see cref="Sprite" /> to draw.</param>
     /// <param name="spriteBatch">The <see cref="SpriteBatch" /> used for drawing.</param>
+    /// <param name="sprite">The <see cref="Sprite" /> to draw.</param>
     /// <remarks>
     ///     If <see cref="Sprite.Destination" /> is not <see langword="null" />, the <see cref="Sprite" />
     ///     is drawn using the destination rectangle; otherwise, it is drawn using
@@ -18,7 +18,7 @@ public static class SpriteExtensions
     /// <exception cref="ArgumentNullException">
     ///     <paramref name="spriteBatch" /> is <see langword="null" />.
     /// </exception>
-    public static void Draw(this Sprite sprite, SpriteBatch spriteBatch)
+    public static void Draw(this SpriteBatch spriteBatch, in Sprite sprite)
     {
         ArgumentNullException.ThrowIfNull(spriteBatch, nameof(spriteBatch));
 
