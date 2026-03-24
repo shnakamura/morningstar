@@ -17,14 +17,13 @@ public sealed class RenderHooks : ModSystem
         orig(self);
 
         Main.instance.LoadItem(ItemID.Meowmere);
-        
-        var sprite = new Sprite(TextureAssets.Item[ItemID.Meowmere], (Screen.Center + Screen.Size / 4f) / 2f);
+  
+        var sprite = new Sprite(TextureAssets.Item[ItemID.Meowmere], Screen.Center - Screen.Size / 16f);
         var data = new SpriteRenderData(in sprite);
-
-        sprite = new Sprite(TextureAssets.Item[ItemID.Meowmere], Screen.Center - Screen.Size / 4f);
-        data = new SpriteRenderData(in sprite);
         
         RenderLayers.Background.Draw(in data);
+        
         RenderLayers.Background.Flush();
+        RenderLayers.Background_Pixellated.Flush();
     }
 }

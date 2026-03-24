@@ -73,5 +73,7 @@ public readonly struct Sprite
         Position = position;
         Color = color ?? Color.White;
         Scale = Vector2.One;
+        Rotation = Main.GameUpdateCount * 0.1f;
+        Origin = texture.Size() * 0.5f;
     }
 }

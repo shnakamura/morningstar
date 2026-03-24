@@ -12,10 +12,26 @@
 /// </remarks>
 public readonly ref struct SpriteBatchScope : IDisposable
 {
+    /// <summary>
+    ///     Whether the scope should restore the previous state of the <see cref="SpriteBatch" /> upon
+    ///     disposal.
+    /// </summary>
     private readonly bool restore;
 
+    /// <summary>
+    ///     The <see cref="SpriteBatch" /> whose state is being changed by the scope.
+    /// </summary>
     private readonly SpriteBatch spriteBatch;
 
+    /// <summary>
+    ///     The previous parameters of the <see cref="SpriteBatch" /> before the new parameters were
+    ///     set.
+    /// </summary>
+    /// <value>
+    ///     If the <see cref="SpriteBatch" /> was not bound to any parameters before applying the new
+    ///     parameters, this will be <see langword="default" />; otherwise, it contains the previous
+    ///     parameters.
+    /// </value>
     private readonly SpriteBatchParameters oldParameters;
 
     public SpriteBatchScope(SpriteBatch spriteBatch, in SpriteBatchParameters parameters)

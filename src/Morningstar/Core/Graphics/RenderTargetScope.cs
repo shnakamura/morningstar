@@ -10,8 +10,20 @@
 /// </remarks>
 public readonly struct RenderTargetScope : IDisposable
 {
+    /// <summary>
+    ///     The <see cref="GraphicsDevice" /> whose state is being changed by the scope.
+    /// </summary>
     private readonly GraphicsDevice device;
 
+    /// <summary>
+    ///     The previous render target bindings of the <see cref="GraphicsDevice" /> before the new render
+    ///     target was set.
+    /// </summary>
+    /// <value>
+    ///     If the <see cref="GraphicsDevice" /> was not bound to any render target before setting the new
+    ///     render target, this will be <see langword="null" />; otherwise, it contains the previous render
+    ///     target bindings.
+    /// </value>
     private readonly RenderTargetBinding[] bindings;
 
     public RenderTargetScope(RenderTarget2D target, Color? color = null)
@@ -22,7 +34,7 @@ public readonly struct RenderTargetScope : IDisposable
         bindings = device.GetRenderTargets();
 
         device.SetRenderTarget(target);
-        
+
         if (!color.HasValue)
         {
             return;

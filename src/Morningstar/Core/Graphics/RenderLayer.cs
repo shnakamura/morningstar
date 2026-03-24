@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using Terraria.GameContent;
 
 namespace Morningstar.Core.Graphics;
 
@@ -47,8 +48,7 @@ public sealed class RenderLayer
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(width, nameof(width));
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(height, nameof(height));
 
-        // TODO: Render Target initialization should probably not be handled here. Consider implementing pooling.
-        Main.RunOnMainThread(() => Target = new RenderTarget2D(GraphicsDevice, width, height));
+        Target = new RenderTarget2D(GraphicsDevice, width, height);
 
         Buffered = true;
 
@@ -89,15 +89,16 @@ public sealed class RenderLayer
             return;
         }
 
-        using var scope = Target.Scope(Color.Transparent);
-
+        using var targetScope = Target.Scope(Color.Transparent);
+        using var spriteBatchScope = SpriteBatch.Scope(Parameters);
+        
         Flush_Sprites();
         Flush_Meshes();
     }
 
     public void Flush()
     {
-        var scope = SpriteBatch.Scope(Parameters);
+        using var spriteBatchScope = SpriteBatch.Scope(Parameters);
 
         if (Buffered)
         {
@@ -113,7 +114,7 @@ public sealed class RenderLayer
     }
 
     private void Flush_Buffer()
-    {
+    {       
         SpriteBatch.Draw(Target, Screen.Bounds, Color.White);
     }
 
@@ -127,6 +128,8 @@ public sealed class RenderLayer
         for (var i = 0; i < sprites.Count; i++)
         {
             var data = sprites[i];
+            
+            using var spriteBatchScope = SpriteBatch.Scope(data.Parameters);
 
             // TODO: Grouping by parameters to minimize batching.
             SpriteBatch.Draw(in data.Sprite);
